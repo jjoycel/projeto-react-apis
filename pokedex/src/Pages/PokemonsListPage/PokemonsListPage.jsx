@@ -15,6 +15,7 @@ function PokemonListPage() {
             console.log(error)
         })
     }, [])
+       
     return (
         <>
         <Grid
