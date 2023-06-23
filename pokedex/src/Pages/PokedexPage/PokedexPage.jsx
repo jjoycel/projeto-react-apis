@@ -1,14 +1,21 @@
 
+import { useContext } from "react";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
+import { GlobalContext } from "../../Context/GlobalContext";
 
 function PokedexPage (){
+    const {pokeList} = useContext(GlobalContext)
     return(
-        <div className="pokedex-page">
-      
-        <h2>Pokedex page</h2>
-    
-
-        </div>
+        <>
+            {pokeList.map((pokemon)=>{
+                return(
+                    <PokemonCard
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                    />
+                )
+            })}      
+        </>
     )
 }
 export default PokedexPage;

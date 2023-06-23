@@ -1,5 +1,6 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Router from './Router/Routes';
+import GlobalContextProvider from "./Context/GlobalContext";
 
 
 const theme = extendTheme({
@@ -18,14 +19,15 @@ function App() {
 
 
 
-  
+
 
   return (
-    
-  <ChakraProvider theme={theme}>
-    <Router />
-  </ChakraProvider>
-    
+    <GlobalContextProvider>
+      <ChakraProvider theme={theme}>
+        <Router />
+      </ChakraProvider>
+    </GlobalContextProvider>
+
   )
 }
 

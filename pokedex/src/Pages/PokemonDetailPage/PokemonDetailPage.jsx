@@ -1,11 +1,12 @@
 import { Box, Flex, Image, Progress, Text } from "@chakra-ui/react";
 import pokeBallBg from "../../assets/pokeballBackGroundDetail.png"
 import pokeBallInside from "../../assets/pokeballInside.svg"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../Api/AxiosConfig";
 import { useParams } from "react-router-dom";
 import pokeColor from "../../Anexos/themes"
 import types from "../../Anexos/types";
+import { GlobalContext } from "../../Context/GlobalContext";
 
 
 const PokemonDetailPage = () => {
@@ -14,9 +15,11 @@ const PokemonDetailPage = () => {
     const params = useParams()
     const [loading, setLoading] = useState(true)
     const [pokemon, setPokemon] = useState({})
+    const {setPokemonGlobal} = useContext(GlobalContext)
     useEffect(() => {
         api.get("/" + params.id).then((response) => {
             setPokemon(response.data)
+            setPokemonGlobal(response.data)
             setLoading(false)
         }).catch((error) => { console.log(error) })
     }, [])
